@@ -14,23 +14,15 @@ GROUP BY Identificador;
 # nos piden conocer el nombre de la empresa, cada año y el número de objetos que han pedido, Para ello,
 # hará falta hacer dos joins, hará falta una tabla que tenga tres columnas: nombre empresa, año, num objetos.
 
-SELECT customers.company_name AS NombreEmpresa, YEAR(order_date) AS Año, order_id,  count(units_on_order)
-FROM orders, customers
-CROSS JOIN customers, products
-WHERE customers.customer_id = orders.customer_id
-GROUP BY NombreEmpresa;
-
-
-SELECT customers.company_name AS NombreEmpresa, YEAR(order_date) AS Año, order_id
+SELECT customers.company_name AS NombreEmpresa, YEAR(order_date) AS Año
 FROM orders
 CROSS JOIN customers
-WHERE customers.customer_id = orders.customer_id;
-SELECT customers.company_name AS NombreEmpresa, YEAR(order_date) AS Año, count(units_on_order)
+WHERE customers.customer_id = orders.customer_id
+GROUP BY Año;
+SELECT customers.company_name AS NombreEmpresa, YEAR(order_date) AS Año, count(products.units_on_order) AS NumeroObjetos
 FROM orders, customers
 CROSS JOIN products
-WHERE customers.customer_id = orders.customer_id
-GROUP BY NombreEmpresa;
-
+WHERE customers.customer_id = orders.customer_id;
 
 
 # SELECT customers.company_name AS NombreEmpresa, customers.customer_id AS Identificador, YEAR(orders.shipped_date) AS Año, COUNT(products.units_on_order) as NumeroObjetos
