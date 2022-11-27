@@ -1,4 +1,4 @@
-USE sys
+USE sys;
 
 #1 Devolver ID del producto, nombre del producto e ID de categoría de los productos con la categoría
 # 'Beverages'.
